@@ -15,7 +15,9 @@
     },
     "require-dev": {
         "driftingly/rector-laravel": "^2.3",
+        "driftingly/rector-laravel": "^2.3",
         "fakerphp/faker": "^1.23",
+        "laravel/boost": "^2.4",
         "laravel/boost": "^2.4",
         "laravel/pail": "^1.2.5",
         "laravel/pao": "^1.0.6",
@@ -47,6 +49,10 @@
             "@php artisan migrate --force",
             "npm install --ignore-scripts",
             "npm run build"
+        ],
+        "format": [
+            "vendor/bin/rector",
+            "vendor/bin/pint"
         ],
         "format": [
             "vendor/bin/rector",
@@ -96,3 +102,4 @@
     "minimum-stability": "stable",
     "prefer-stable": true
 }
+
