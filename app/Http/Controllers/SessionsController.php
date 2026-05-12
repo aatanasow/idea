@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,28 +9,32 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionsController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         return view('auth.login');
     }
 
-    public function store(Request $request){
-        $validated = $request -> validate([
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'max:255']
+            'password' => ['required', 'string', 'min:8', 'max:255'],
         ]);
 
-        if(!Auth::attempt($validated)) {
+        if (! Auth::attempt($validated)) {
             return back()
                 ->withErrors(['password' => 'The provided credentials do not match our records.'])
                 ->withInput();
         }
 
         $request->session()->regenerate();
+
         return redirect()->intended('/')->with('success', 'You are now logged in');
 
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();

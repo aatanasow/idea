@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Tests\TestCase;
 
 it('registers a user', function () {
     visit('/register')
@@ -10,12 +11,11 @@ it('registers a user', function () {
         ->click('@register-button')
         ->assertPathIs('/');
 
-
-    /** @var Tests\TestCase $this */
+    /** @var TestCase $this */
     $this->assertAuthenticated();
 
     expect(Auth::user())->toMatchArray([
         'name' => 'John Doe',
-        'email' => 'john@mail.com'
+        'email' => 'john@mail.com',
     ]);
 });

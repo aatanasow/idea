@@ -17,7 +17,7 @@ test('it can have steps', function () {
     // expect($idea->steps)->toBeInstanceOf(Collection::class);
     expect($idea->steps)->toBeEmpty();
 
-    $idea -> steps() -> create([
+    $idea->steps()->create([
         'description' => 'Do the thing',
     ]);
 

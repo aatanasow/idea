@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Tests\TestCase;
 
 it('logs in a user', function () {
 
@@ -13,7 +14,7 @@ it('logs in a user', function () {
         ->click('@login-button')
         ->assertPathIs('/');
 
-    /** @var Tests\TestCase $this */
+    /** @var TestCase $this */
     $this->assertAuthenticated();
 
 });
@@ -22,7 +23,7 @@ it('logs out a user', function () {
 
     $user = User::factory()->create();
 
-    /** @var Tests\TestCase $this */
+    /** @var TestCase $this */
     $this->actingAs($user);
 
     visit('/')
