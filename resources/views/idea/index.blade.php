@@ -3,6 +3,15 @@
         <header class="py-8 md:py-12">
             <h1 class="text-3xl font-bold tracking-tight">Ideas</h1>
             <p class="text-muted-foreground mt-2">Capture your thoughts. Make a plan.</p>
+
+            <x-card
+                is='button'
+                class="mt-10 space-y-3 cursor-pointer h-32 w-full"
+                id="btn"
+                data-test="create-idea-button"
+            >
+                What's the idea?
+            </x-card>
         </header>
     </div>
 
@@ -23,6 +32,11 @@
             @forelse ($ideas as $idea)
                 {{-- <x-card href="/ideas/{{ $idea->id }}"> --}}
                 <x-card href="{{ route('idea.show', $idea ) }}">
+                    @if ($idea->image_path)
+                    <div class="mb-4 -mx-4 -mt-4 rounded-lg overflow-hidden">
+                        <img src="{{ asset('storage/' . $idea->image_path) }}" alt="{{ $idea->title }}" class="w-full h-auto object-cover">
+                    </div>
+                    @endif
                     <h3 class="text-foreground text-lg">{{ $idea->title }}</h3>
                     <div class="mt-2">
                         <x-idea.status-label status="{{ $idea->status }}">
@@ -40,5 +54,8 @@
 
         </div>
 
+        <x-idea.modal />
+
     </div>
+
 </x-layout>

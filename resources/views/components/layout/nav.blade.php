@@ -6,6 +6,7 @@
 
         <div class="flex gap-x-5 items-center">
             @auth
+                <a href="{{ route('profile.edit') }}">Edit profile</a>
                 <form action="/logout" method="post">
                     @csrf
 

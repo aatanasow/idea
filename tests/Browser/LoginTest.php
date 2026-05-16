@@ -12,7 +12,7 @@ it('logs in a user', function () {
         ->fill('password', 'password123')
         // ->click('[data-test:login-button]')
         ->click('@login-button')
-        ->assertPathIs('/');
+        ->assertRoute('idea.index');
 
     /** @var TestCase $this */
     $this->assertAuthenticated();
